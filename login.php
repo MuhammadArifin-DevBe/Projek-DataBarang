@@ -24,29 +24,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (mysqli_num_rows($result) === 1) {
       $user = mysqli_fetch_assoc($result);
       if (password_verify($password, $user['password'])) {
-        // Simpan session setelah login sukses
+        // Login sukses
         $_SESSION["login"] = true;
         $_SESSION["user"] = $user['username'];
         $_SESSION["email"] = $user['email'];
         $_SESSION["id"] = $user['id'];
-        $_SESSION["role"] = $user['role']; // simpan role
-
-        // Catat log aktivitas login
+        $_SESSION["role"] = $user['role'];
         catat_log("Login ke sistem sebagai " . $user['role']);
-
-        // Redirect sesuai role
         if ($user['role'] === 'admin') {
           header("Location: admin/index.php");
         } else {
           header("Location: user/dashboard_user.php");
         }
         exit;
+      } else {
+        $errors['password'] = "Password salah.";
       }
     } else {
-      $errors['password'] = "Password salah.";
+      $errors['username'] = "Username tidak ditemukan.";
     }
-  } else {
-    $errors['username'] = "Username tidak ditemukan.";
   }
 }
 

@@ -31,8 +31,8 @@ if ($aksi === 'setujui') {
 
         // Insert ke barang_distribusi
         mysqli_query($conn, "
-            INSERT INTO barang_distribusi (id_barang, jumlah_pemasukan, admin, tanggal_distribusi)
-            VALUES ('$id_barang', '$jumlah', '$admin', NOW())
+    INSERT INTO barang_distribusi (id_barang, jumlah, admin, tanggal_distribusi)
+    VALUES ('$id_barang', '$jumlah', '$admin', NOW())
         ");
 
         // Kurangi stok master_barang

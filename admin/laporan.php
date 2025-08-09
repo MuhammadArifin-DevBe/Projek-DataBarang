@@ -2,13 +2,12 @@
 session_start();
 require '../koneksi.php';
 
-// Cek apakah admin
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit;
 }
 
-// Ambil data laporan
+// Ambil data
 $data_pengajuan = mysqli_query($conn, "SELECT bk.*, mb.nama FROM barang_keluar bk JOIN master_barang mb ON bk.id_barang = mb.id ORDER BY bk.tanggal_pengajuan DESC");
 $data_distribusi = mysqli_query($conn, "SELECT bd.*, mb.nama FROM barang_distribusi bd JOIN master_barang mb ON bd.id_barang = mb.id ORDER BY bd.tanggal_distribusi DESC");
 $data_log = mysqli_query($conn, "SELECT la.*, u.username FROM log_aktivitas la JOIN users u ON la.user_id = u.id ORDER BY la.waktu DESC");
@@ -21,24 +20,15 @@ include '../assets/templates/navbar.php';
 <div class="container mt-4">
     <h3 class="mb-4">Laporan Lengkap</h3>
     <ul class="nav nav-tabs" id="laporanTabs" role="tablist">
-        <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pengajuan">Pengajuan</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#distribusi">Distribusi</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#log">Log Aktivitas</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#barang">Data Barang</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#user">Data Pengguna</button>
-        </li>
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pengajuan">Pengajuan</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#distribusi">Distribusi</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#log">Log Aktivitas</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#barang">Data Barang</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#user">Data Pengguna</button></li>
     </ul>
 
     <div class="tab-content border border-top-0 p-3">
+        <!-- Tab Pengajuan -->
         <div class="tab-pane fade show active" id="pengajuan">
             <h5>Pengajuan Barang</h5>
             <table class="table table-bordered">
@@ -48,7 +38,7 @@ include '../assets/templates/navbar.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no=1; while ($row = mysqli_fetch_assoc($data_pengajuan)) : ?>
+                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_pengajuan)) : ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['nama'] ?></td>
@@ -63,6 +53,7 @@ include '../assets/templates/navbar.php';
             </table>
         </div>
 
+        <!-- Tab Distribusi -->
         <div class="tab-pane fade" id="distribusi">
             <h5>Distribusi Barang</h5>
             <table class="table table-bordered">
@@ -70,7 +61,7 @@ include '../assets/templates/navbar.php';
                     <tr><th>No</th><th>Barang</th><th>Jumlah</th><th>Tanggal</th></tr>
                 </thead>
                 <tbody>
-                    <?php $no=1; while ($row = mysqli_fetch_assoc($data_distribusi)) : ?>
+                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_distribusi)) : ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['nama'] ?></td>
@@ -82,12 +73,13 @@ include '../assets/templates/navbar.php';
             </table>
         </div>
 
+        <!-- Tab Log -->
         <div class="tab-pane fade" id="log">
             <h5>Log Aktivitas</h5>
             <table class="table table-bordered">
                 <thead><tr><th>No</th><th>User</th><th>Aktivitas</th><th>Waktu</th></tr></thead>
                 <tbody>
-                    <?php $no=1; while ($row = mysqli_fetch_assoc($data_log)) : ?>
+                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_log)) : ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['username'] ?></td>
@@ -99,28 +91,37 @@ include '../assets/templates/navbar.php';
             </table>
         </div>
 
+        <!-- Tab Barang -->
         <div class="tab-pane fade" id="barang">
             <h5>Data Barang</h5>
             <table class="table table-bordered">
-                <thead><tr><th>No</th><th>Nama Barang</th><th>Stok</th><th>Satuan</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>No</th><th>Nama Barang</th><th>Kategori</th><th>Jenis</th><th>Stok</th><th>Satuan</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <?php $no=1; while ($row = mysqli_fetch_assoc($data_barang)) : ?>
+                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_barang)) : ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['nama'] ?></td>
-                        <td><?= $row['stok'] ?></td>  
-                        <td><?= $row['satuan'] ?></td>                    </tr>                  </tr>
+                        <td><?= $row['kategori_barang'] ?></td>
+                        <td><?= $row['jenis_barang'] ?></td>
+                        <td><?= $row['stok'] ?></td>
+                        <td><?= $row['satuan'] ?></td>
+                    </tr>
                     <?php endwhile ?>
                 </tbody>
             </table>
         </div>
 
+        <!-- Tab User -->
         <div class="tab-pane fade" id="user">
             <h5>Data Pengguna</h5>
             <table class="table table-bordered">
                 <thead><tr><th>No</th><th>Username</th><th>Email</th><th>Role</th></tr></thead>
                 <tbody>
-                    <?php $no=1; while ($row = mysqli_fetch_assoc($data_user)) : ?>
+                    <?php $no = 1; while ($row = mysqli_fetch_assoc($data_user)) : ?>
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $row['username'] ?></td>
