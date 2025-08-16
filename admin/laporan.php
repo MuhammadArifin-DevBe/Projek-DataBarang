@@ -159,7 +159,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab User -->
         <div class="tab-pane fade" id="user">
             <h5>Data Pengguna</h5>
-            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
+            <a href="cetak_pengguna.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>
