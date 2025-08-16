@@ -91,7 +91,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab Log -->
         <div class="tab-pane fade" id="log">
             <h5>Log Aktivitas</h5>
-            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
+            <a href="cetak_aktivitas.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>
