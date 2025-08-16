@@ -31,6 +31,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab Pengajuan -->
         <div class="tab-pane fade show active" id="pengajuan">
             <h5>Pengajuan Barang</h5>
+            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -56,6 +57,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab Distribusi -->
         <div class="tab-pane fade" id="distribusi">
             <h5>Distribusi Barang</h5>
+            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead>
                     <tr><th>No</th><th>Barang</th><th>Jumlah</th><th>Tanggal</th></tr>
@@ -76,6 +78,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab Log -->
         <div class="tab-pane fade" id="log">
             <h5>Log Aktivitas</h5>
+            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead><tr><th>No</th><th>User</th><th>Aktivitas</th><th>Waktu</th></tr></thead>
                 <tbody>
@@ -94,6 +97,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab Barang -->
         <div class="tab-pane fade" id="barang">
             <h5>Data Barang</h5>
+            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -118,6 +122,7 @@ include '../assets/templates/navbar.php';
         <!-- Tab User -->
         <div class="tab-pane fade" id="user">
             <h5>Data Pengguna</h5>
+            <a href="cetak_pengajuan.php" class="btn btn-primary mb-3" target="_blank">Cetak PDF</a>
             <table class="table table-bordered">
                 <thead><tr><th>No</th><th>Username</th><th>Email</th><th>Role</th></tr></thead>
                 <tbody>

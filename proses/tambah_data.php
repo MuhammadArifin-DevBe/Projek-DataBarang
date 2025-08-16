@@ -8,9 +8,11 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
 include '../koneksi.php';
 include '../assets/templates/navbar.php';
 
-// Sesuaikan ENUM dengan database
+// ENUM dari database
 $kategori_options = ['elektronik', 'non elektronik'];
-$jenis_options = ['habis pakai', 'tidak habis pakai'];
+$jenis_options    = ['habis pakai', 'tidak habis pakai'];
+$kondisi_options  = ['baik', 'rusak ringan', 'rusak berat'];
+$status_options   = ['aktif', 'dipinjam', 'diperbaiki', 'rusak total'];
 ?>
 
 <div class="container-fluid px-4 mt-4">
@@ -57,6 +59,45 @@ $jenis_options = ['habis pakai', 'tidak habis pakai'];
                 <div class="mb-3">
                     <label for="satuan" class="form-label">Satuan</label>
                     <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Contoh: pcs / box / unit" required>
+                </div>
+
+                <!-- Harga Barang -->
+                <div class="mb-3">
+                    <label for="harga_brg" class="form-label">Harga Barang</label>
+                    <input type="text" name="harga_brg" id="harga_brg" class="form-control" placeholder="Contoh: 1500000" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="tgl_beli" class="form-label">Tanggal Beli</label>
+                    <input type="date" class="form-control" id="tgl_beli" name="tgl_beli" required>
+                </div>
+
+                <!-- Kondisi -->
+                <div class="mb-3">
+                    <label for="kondisi" class="form-label">Kondisi</label>
+                    <select name="kondisi" id="kondisi" class="form-select" required>
+                        <option value="">-- Pilih Kondisi --</option>
+                        <?php foreach ($kondisi_options as $k): ?>
+                            <option value="<?= $k ?>"><?= ucfirst($k) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" id="status" class="form-select" required>
+                        <option value="">-- Pilih Status --</option>
+                        <?php foreach ($status_options as $s): ?>
+                            <option value="<?= $s ?>"><?= ucfirst($s) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Diperoleh Dari -->
+                <div class="mb-3">
+                    <label for="diprlh_dri" class="form-label">Diperoleh Dari</label>
+                    <input type="text" name="diprlh_dri" id="diprlh_dri" class="form-control" placeholder="Contoh: Hibah, Pembelian" required>
                 </div>
 
                 <!-- Gambar -->
