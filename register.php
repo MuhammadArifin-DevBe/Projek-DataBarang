@@ -58,7 +58,7 @@
       <script src="https://unpkg.com/feather-icons"></script>
       <style>
         body {
-          background-color: rgba(174, 174, 174, 1);
+          background-image: url(./assets/img/bguniska.jpg);
           /* Ganti dengan gambar kamu */
           background-size: cover;
           background-position: center;
@@ -103,10 +103,9 @@
     <body>
       <div class="login-card text-center shadow">
         <div class="mb-2">
-          <i data-feather="user" width="48" height="48" color="#333"></i>
+          <img src="assets/img/image.png" alt="User Icon" width="184" height="175" style="border-radius: 10%;">
         </div>
         <h2 class="mb-3" style="color: #333;">Register</h2>
-
         <form action="" method="POST">
           <div class="mb-3 text-start">
             <input type="text" class="form-control <?php if (isset($errors['username'])) echo 'is-invalid'; ?>" name="username" placeholder="Masukkan username" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">

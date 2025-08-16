@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
     body {
-      background-color: rgba(174, 174, 174, 1);
+      background-image: url(./assets/img/bguniska.jpg);
       /* Ganti dengan gambar kamu */
       background-size: cover;
       background-position: center;
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
   <div class="login-card text-center shadow">
     <div class="mb-2">
-      <i data-feather="user" width="48" height="48" color="#333"></i>
+    <img src="assets/img/image.png" alt="User Icon" width="184" height="184" style="border-radius: 10%;">
     </div>
     <h2 class="mb-3" style="color: #333;">User Login</h2>
 
