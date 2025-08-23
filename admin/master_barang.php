@@ -150,8 +150,8 @@
                                         <?php endif; ?>
                                     </td>
                                     <td style="display: flex; gap: 5px;">
-                                        <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-dark btn-sm">Edit</a>
-                                        <a href="hapus.php?id=<?= $row['id'] ?>" class="btn btn-dark btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                                        <a href="../proses/edit_data.php?id=<?= $row['id'] ?>" class="btn btn-dark btn-sm">Edit</a>
+                                        <a href="../proses/delete.php?id=<?= $row['id'] ?>" class="btn btn-dark btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                                     </td>
                                 </tr>
                         <?php
