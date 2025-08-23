@@ -7,8 +7,13 @@ $stok = $_POST['stok'];
 $satuan = $_POST['satuan'];
 $kategori_barang = $_POST['kategori_barang'];
 $jenis_barang = $_POST['jenis_barang'];
+$harga_brg = $_POST['harga_brg'];
+$tgl_beli = $_POST['tgl_beli'];
+$kondisi = $_POST['kondisi'];
+$status = $_POST['status'];
+$diprlh_dri = $_POST['diprlh_dri'];
 
-$gambar_baru = '';
+$gambar_baru = $barang['gambar'] ?? ''; // default gambar lama
 
 // Cek apakah ada gambar baru diupload
 if (!empty($_FILES['gambar']['name'])) {
@@ -19,19 +24,22 @@ if (!empty($_FILES['gambar']['name'])) {
     $upload_path = '../assets/img/' . $gambar_baru;
 
     move_uploaded_file($gambar_tmp, $upload_path);
-
-    // Update dengan gambar baru
-    $sql = "UPDATE master_barang 
-            SET nama='$nama', stok='$stok', satuan='$satuan', gambar='$gambar_baru',
-                kategori_barang='$kategori_barang', jenis_barang='$jenis_barang' 
-            WHERE id='$id'";
-} else {
-    // Update tanpa ubah gambar
-    $sql = "UPDATE master_barang 
-            SET nama='$nama', stok='$stok', satuan='$satuan',
-                kategori_barang='$kategori_barang', jenis_barang='$jenis_barang' 
-            WHERE id='$id'";
 }
+
+// Update semua kolom
+$sql = "UPDATE master_barang 
+        SET nama='$nama',
+            stok='$stok',
+            satuan='$satuan',
+            kategori_barang='$kategori_barang',
+            jenis_barang='$jenis_barang',
+            harga_brg='$harga_brg',
+            tgl_beli='$tgl_beli',
+            kondisi='$kondisi',
+            status='$status',
+            diprlh_dri='$diprlh_dri',
+            gambar='$gambar_baru'
+        WHERE id='$id'";
 
 $result = $conn->query($sql);
 
